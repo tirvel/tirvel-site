@@ -82,12 +82,10 @@ h1 {
   margin: 0;
 }
 
-/* Accueil : le nom en grand, la présentation, puis les vidéos en lignes. */
+/* Accueil : le nom en grand, puis les vidéos en lignes. */
 .titre-marque { display: flex; align-items: center; font-size: clamp(2.75rem, 13vw, 3.5rem); line-height: 1; letter-spacing: -0.025em; }
 
 .titre-marque img { width: 1.05em; height: 1.05em; margin-left: -0.19em; }
-
-.intro { margin: 1.25rem 0 0; max-width: 34rem; }
 
 .videos { list-style: none; margin: 2.5rem 0 0; padding: 0; border-top: 1px solid var(--line); }
 
@@ -159,15 +157,11 @@ h1 {
 
 .lien-nom { font: 600 1.75rem/1.15 "Unbounded", system-ui, sans-serif; letter-spacing: -0.01em; }
 
-.lien-quoi { grid-column: 1; color: var(--muted); font-size: 0.9375rem; line-height: 1.4; }
-
-.lien-principal .lien-quoi { color: rgba(255, 255, 255, 0.85); }
-
 /* Flèche sortante dessinée en SVG, à la couleur du texte. */
 .lien::after {
   content: "";
   grid-column: 2;
-  grid-row: 1 / span 2;
+  grid-row: 1;
   width: 1.5rem;
   height: 1.5rem;
   background: currentColor;
@@ -179,6 +173,8 @@ h1 {
 .lien:hover::after { transform: translate(2px, -2px); }
 
 .note { color: var(--muted); font-size: 0.875rem; line-height: 1.5; margin: 0 0 1.25rem; }
+
+.note:last-child { margin-bottom: 0; }
 
 /* Mentions légales : une rubrique par ligne, séparées d'un filet. */
 dl { margin: 1.5rem 0 0; }
@@ -233,10 +229,8 @@ footer a:hover { color: var(--text); }
 
   .titre-marque { font-size: clamp(4.5rem, 8vw, 6rem); }
 
-  .intro { font-size: 1.1875rem; margin-top: 1.75rem; }
-
-  /* Le bloc reste centré ; les vidéos s'alignent sur le bas de la présentation. */
-  .accueil main { align-content: center; align-items: end; }
+  /* Le nom et les vidéos se font face, centrés sur la hauteur. */
+  .accueil main { align-content: center; }
 
   .videos { margin-top: 0; }
 
