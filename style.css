@@ -34,6 +34,22 @@ a { color: var(--cyan); text-underline-offset: 0.2em; }
 
 :focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 4px; }
 
+/* Fond de toutes les pages : dégradé flou et granuleux aux couleurs du logo. */
+body::before,
+body::after { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; }
+
+body::before {
+  background:
+    radial-gradient(28rem 22rem at 8% 6%, rgba(138, 63, 252, 0.34), transparent 70%),
+    radial-gradient(30rem 24rem at -6% 48%, rgba(47, 87, 232, 0.3), transparent 70%);
+}
+
+body::after {
+  opacity: 0.16;
+  mix-blend-mode: overlay;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
 .page {
   max-width: 38rem;
   margin: 0 auto;
@@ -58,47 +74,54 @@ a { color: var(--cyan); text-underline-offset: 0.2em; }
 
 main { flex: 1; padding-top: 1.75rem; }
 
-h1, h2 {
-  font-family: "Unbounded", system-ui, sans-serif;
-  font-weight: 600;
-  line-height: 1.2;
+h1 {
+  font: 600 clamp(1.75rem, 7vw, 2.5rem)/1.2 "Unbounded", system-ui, sans-serif;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
   margin: 0;
 }
 
-h1 { font-size: clamp(1.75rem, 7vw, 2.5rem); letter-spacing: -0.01em; text-wrap: balance; }
+/* Accueil : le nom en grand, la présentation, puis les vidéos en lignes. */
+.titre-marque { display: flex; align-items: center; gap: 0.12em; font-size: clamp(2.75rem, 13vw, 3.5rem); line-height: 1; letter-spacing: -0.025em; }
 
-h2 { font-size: 1.125rem; margin-bottom: 0.75rem; }
+.titre-marque img { width: 1.05em; height: 1.05em; }
 
-.titre-marque { display: flex; align-items: center; gap: 0.75rem; }
+.intro { margin: 1.25rem 0 0; max-width: 34rem; }
 
-.titre-marque img { width: 1.4em; height: 1.4em; }
+.videos { list-style: none; margin: 2.5rem 0 0; padding: 0; border-top: 1px solid var(--line); }
 
-.intro { margin: 1rem 0 0; }
-
-section { padding: 1.5rem 0; border-top: 1px solid var(--line); }
-
-main > section:first-of-type { margin-top: 1.5rem; }
-
-section p { margin: 0 0 1rem; }
-
-section > :last-child { margin-bottom: 0; }
-
-/* Page golem : les deux liens d'abord, sur fond dégradé flou et granuleux. */
-.golem::before,
-.golem::after { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; }
-
-.golem::before {
-  background:
-    radial-gradient(28rem 22rem at 8% 6%, rgba(138, 63, 252, 0.34), transparent 70%),
-    radial-gradient(30rem 24rem at -6% 48%, rgba(47, 87, 232, 0.3), transparent 70%);
+.videos a {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: 1rem;
+  align-items: center;
+  min-height: 44px;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--text);
+  text-decoration: none;
+  font: 600 1.5rem/1.15 "Unbounded", system-ui, sans-serif;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+  transition: border-color 0.15s ease-out;
 }
 
-.golem::after {
-  opacity: 0.16;
-  mix-blend-mode: overlay;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+.videos a:hover { border-bottom-color: var(--muted); }
+
+/* Flèche interne (vers la droite), même trait que la flèche sortante des liens. */
+.videos a::after {
+  content: "";
+  width: 1.5rem;
+  height: 1.5rem;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E") center / contain no-repeat;
+  transition: transform 0.15s ease-out;
 }
 
+.videos a:hover::after { transform: translateX(4px); }
+
+/* Page golem : les deux liens d'abord. */
 .liens { display: grid; gap: 0.75rem; margin-top: 2rem; }
 
 .pub-label {
@@ -156,53 +179,14 @@ section > :last-child { margin-bottom: 0; }
 
 .note { color: var(--muted); font-size: 0.875rem; line-height: 1.5; margin: 0 0 1.25rem; }
 
-/* Bureau : le titre occupe la gauche en grand, les liens la droite. */
-@media (min-width: 960px) {
-  .golem .page { max-width: 76rem; padding: 2rem 3rem 2.5rem; }
+/* Mentions légales : une rubrique par ligne, séparées d'un filet. */
+dl { margin: 1.5rem 0 0; }
 
-  .golem main {
-    display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-    column-gap: clamp(3rem, 6vw, 6rem);
-    align-items: center;
-    padding: 2rem 0 3rem;
-  }
+dt { font-weight: 600; padding-top: 1rem; border-top: 1px solid var(--line); }
 
-  .golem h1 { font-size: clamp(3.25rem, 5.6vw, 5.25rem); line-height: 1.02; letter-spacing: -0.025em; }
+dd { margin: 0.25rem 0 1.25rem; }
 
-  .golem .liens { margin-top: 0; }
-
-  .golem .lien { padding: 1.375rem 1.5rem; }
-
-  .golem .lien-nom { font-size: 2.25rem; }
-
-  .golem::before {
-    background:
-      radial-gradient(44rem 34rem at 12% 34%, rgba(138, 63, 252, 0.32), transparent 70%),
-      radial-gradient(36rem 30rem at 30% 92%, rgba(47, 87, 232, 0.28), transparent 70%);
-  }
-}
-
-.videos { list-style: none; margin: 0; padding: 0; }
-
-.videos a {
-  display: block;
-  padding: 0.875rem 0;
-  color: var(--text);
-  text-decoration: none;
-}
-
-.videos a:hover strong { text-decoration: underline; text-underline-offset: 0.2em; }
-
-.videos strong { display: block; font-size: 1.125rem; }
-
-.videos small { color: var(--muted); font-size: 0.9375rem; }
-
-dl { margin: 0; }
-
-dt { font-weight: 600; margin-top: 1.25rem; }
-
-dd { margin: 0.25rem 0 0; }
+dd:last-child { margin-bottom: 0; }
 
 footer {
   border-top: 1px solid var(--line);
@@ -215,6 +199,50 @@ footer {
 
 footer a { color: var(--muted); display: inline-flex; align-items: center; min-height: 44px; }
 
+/* Bureau : toute la largeur, le titre à gauche en grand, le contenu à droite. */
+@media (min-width: 960px) {
+  .page { max-width: 76rem; padding: 2rem 3rem 2.5rem; }
+
+  main {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    column-gap: clamp(3rem, 6vw, 6rem);
+    align-items: center;
+    padding: 2rem 0 3rem;
+  }
+
+  body::before {
+    background:
+      radial-gradient(44rem 34rem at 12% 34%, rgba(138, 63, 252, 0.32), transparent 70%),
+      radial-gradient(36rem 30rem at 30% 92%, rgba(47, 87, 232, 0.28), transparent 70%);
+  }
+
+  .golem h1 { font-size: clamp(3.25rem, 5.6vw, 5.25rem); line-height: 1.02; letter-spacing: -0.025em; }
+
+  .liens { margin-top: 0; }
+
+  .lien { padding: 1.375rem 1.5rem; }
+
+  .lien-nom { font-size: 2.25rem; }
+
+  .titre-marque { font-size: clamp(4.5rem, 8vw, 6rem); }
+
+  .intro { font-size: 1.1875rem; margin-top: 1.75rem; }
+
+  /* Le bloc reste centré ; les vidéos s'alignent sur le bas de la présentation. */
+  .accueil main { align-content: center; align-items: end; }
+
+  .videos { margin-top: 0; }
+
+  .videos a { font-size: 2.25rem; padding: 1.5rem 0; }
+
+  .mentions main { grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); align-items: start; padding-top: 3rem; }
+
+  .mentions h1 { font-size: 3rem; line-height: 1.05; letter-spacing: -0.02em; }
+
+  .mentions dl { margin-top: 0; }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .lien, .lien::after { transition: none; }
+  .lien, .lien::after, .videos a, .videos a::after { transition: none; }
 }
