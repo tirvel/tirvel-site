@@ -107,61 +107,9 @@ h1 {
 
 .videos a:hover, .videos a:active { border-bottom-color: var(--muted); }
 
-/* Flèche interne (vers la droite), même trait que la flèche sortante des liens. */
+/* Flèche sortante : chaque vidéo mène à son dépôt GitHub. */
 .videos a::after {
   content: "";
-  width: 1.5rem;
-  height: 1.5rem;
-  background: currentColor;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E") center / contain no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E") center / contain no-repeat;
-  transition: transform 0.15s ease-out;
-}
-
-.videos a:hover::after { transform: translateX(4px); }
-
-/* Page golem : les deux liens d'abord. */
-.liens { display: grid; gap: 0.75rem; margin-top: 2rem; }
-
-.pub-label {
-  justify-self: start;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  border: 1px solid var(--muted);
-  border-radius: 999px;
-  padding: 0.125rem 0.75rem;
-}
-
-.lien {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  column-gap: 1rem;
-  align-items: center;
-  padding: 1rem 1.25rem;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: rgba(7, 10, 28, 0.6);
-  color: var(--text);
-  text-decoration: none;
-  transition: background-color 0.15s ease-out, border-color 0.15s ease-out, transform 0.1s ease-out;
-}
-
-.lien:hover { border-color: var(--muted); }
-
-.lien:active { transform: scale(0.99); }
-
-.lien-principal { background: var(--blue); border-color: var(--blue); color: #fff; }
-
-.lien-principal:hover { background: var(--blue-hover); border-color: var(--blue-hover); }
-
-.lien-nom { font: 600 1.75rem/1.15 "Unbounded", system-ui, sans-serif; letter-spacing: -0.01em; }
-
-/* Flèche sortante dessinée en SVG, à la couleur du texte. */
-.lien::after {
-  content: "";
-  grid-column: 2;
-  grid-row: 1;
   width: 1.5rem;
   height: 1.5rem;
   background: currentColor;
@@ -170,11 +118,7 @@ h1 {
   transition: transform 0.15s ease-out;
 }
 
-.lien:hover::after { transform: translate(2px, -2px); }
-
-.note { color: var(--muted); font-size: 0.875rem; line-height: 1.5; margin: 0 0 1.25rem; }
-
-.note:last-child { margin-bottom: 0; }
+.videos a:hover::after { transform: translate(2px, -2px); }
 
 /* Mentions légales : une rubrique par ligne, séparées d'un filet. */
 dl { margin: 1.5rem 0 0; }
@@ -219,14 +163,6 @@ footer a:hover { color: var(--text); }
       radial-gradient(36rem 30rem at 30% 92%, rgba(47, 87, 232, 0.28), transparent 70%);
   }
 
-  .golem h1 { font-size: clamp(3.25rem, 5.6vw, 5.25rem); line-height: 1.02; letter-spacing: -0.025em; }
-
-  .liens { margin-top: 0; }
-
-  .lien { padding: 1.5rem; }
-
-  .lien-nom { font-size: 2.25rem; }
-
   .titre-marque { font-size: clamp(4.5rem, 8vw, 6rem); }
 
   /* Le nom et les vidéos se font face, centrés sur la hauteur. */
@@ -244,5 +180,5 @@ footer a:hover { color: var(--text); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .lien, .lien::after, .videos a, .videos a::after, footer a { transition: none; }
+  .videos a, .videos a::after, footer a { transition: none; }
 }

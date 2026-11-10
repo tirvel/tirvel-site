@@ -3,14 +3,13 @@
 Site statique de la chaîne Tirvel. Aucun outil de build : les fichiers sont servis tels quels.
 
 - `index.html` : accueil.
-- `golem/index.html` : liens de la vidéo 1 (Meshy, code). Adresse : tirvel.com/golem.
 - `mentions-legales/index.html` : mentions légales.
 - `CNAME` : domaine pour GitHub Pages.
 - `fonts/` : Unbounded, réduite aux caractères utiles, licence OFL.
 
 ## Voir le site en local
 
-Dans ce dossier : `python -m http.server 8765`, puis ouvrir http://127.0.0.1:8765/golem/.
+Dans ce dossier : `python -m http.server 8765`, puis ouvrir http://127.0.0.1:8765/.
 
 ## Hébergement : GitHub Pages
 
@@ -23,8 +22,7 @@ Limite : en offre gratuite, le dépôt du site doit être public.
 ### 1. Avant tout
 
 1. Remplir l'éditeur dans `mentions-legales/index.html` (nom, ou nom et SIRET une fois la micro-entreprise créée).
-2. Créer le dépôt public `tirvel/golem` et y pousser le prompt, le script et le projet Unity. Sinon le lien GitHub de la page golem mène à une page 404.
-3. Dans le tableau de bord affilié Meshy (PromoteKit), déclarer le site `tirvel.com` comme propriété de promotion. Les conditions du programme (art. 2.2) l'exigent avant toute promotion.
+2. Créer le dépôt public `tirvel/golem` et y pousser le prompt, le script et le projet Unity. Sinon le lien de l'accueil mène à une page 404.
 
 ### 2. Dépôt GitHub
 
@@ -80,13 +78,11 @@ Si l'option URL Forwarding est active sur le domaine, la désactiver.
 
 ### 7. Contrôle
 
-- https://tirvel.com/golem/ s'affiche, avec le cadenas.
-- http://tirvel.com/golem et https://www.tirvel.com/golem renvoient vers https://tirvel.com/golem/.
-- Les boutons Meshy et GitHub mènent au bon endroit.
+- https://tirvel.com/ s'affiche, avec le cadenas.
+- http://tirvel.com et https://www.tirvel.com renvoient vers https://tirvel.com/.
+- Le lien de la vidéo mène au dépôt GitHub.
 - Un mail envoyé à contact@tirvel.com arrive toujours.
-
-Ensuite seulement, mettre `https://tirvel.com/golem` dans la description de la vidéo.
 
 ## Ajouter une vidéo
 
-Copier `golem/` sous un nouveau nom, changer les textes et les liens, puis ajouter une ligne dans la liste de `index.html`.
+Ajouter une ligne dans la liste de `index.html`, avec le lien du dépôt GitHub de la vidéo.
