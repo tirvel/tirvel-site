@@ -23,7 +23,7 @@ Limite : en offre gratuite, le dépôt du site doit être public.
 ### 1. Avant tout
 
 1. Remplir l'éditeur dans `mentions-legales/index.html` (nom, ou nom et SIRET une fois la micro-entreprise créée).
-2. Créer le dépôt public `tirvel/golem` et y pousser le prompt, le script et le projet Unity. Sinon le bouton « Voir le dépôt » mène à une page 404.
+2. Créer le dépôt public `tirvel/golem` et y pousser le prompt, le script et le projet Unity. Sinon le lien GitHub de la page golem mène à une page 404.
 3. Dans le tableau de bord affilié Meshy (PromoteKit), déclarer le site `tirvel.com` comme propriété de promotion. Les conditions du programme (art. 2.2) l'exigent avant toute promotion.
 
 ### 2. Dépôt GitHub
